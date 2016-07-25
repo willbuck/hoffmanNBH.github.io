@@ -53,17 +53,15 @@ function OpenContextSimpleAPI() {
 		var params = this.set_parameters();
 		return $.ajax({
 			type: "GET",
-			url: url,
-			data: params,
+			url: "http://opencontext.org/subjects-search/?q=key&proj=91-historic-fort-snelling&prop=oc-gen-cat-object&attributes=thumbnail&start=0&rows=3&response=metadata",
 			dataType: "json",
 			headers: {
 				//added to get JSON data (content negotiation)
 				Accept : "application/json; charset=utf-8"
-			},
-			context: this,
-			success: this.get_dataDone, //do this when we get data w/o problems
-			error: this.get_dataError //error message display
-		});
+			}
+		}).success(function(response) {
+console.log(response);
+});
 	}
 	this.get_search_data = function(query) {
 		// calls the Open Context API to get data with a keyword search
